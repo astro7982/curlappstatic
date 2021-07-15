@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: httpgooglechecker
+spec:
+  containers:
+  - name: httpgooglechecker
+    image: docker.io/astro7982/curlappstatic
+    env:
+    - name: SPLUNK_OTEL_AGENT
+      valueFrom:
+        fieldRef:
+          fieldPath: status.hostIP
+    - name: OTEL_RESOURCE_ATTRIBUTES
+      value: service.name=httpGoogleChecker-k8s,deployment.environment=CheckingGoogleK8S
+    - name: SPLUNK_METRICS_ENDPOINT
+      value: http://$(SPLUNK_OTEL_AGENT):9943
+    - name: OTEL_EXPORTER_OTLP_ENDPOINT
+      value: http://$(SPLUNK_OTEL_AGENT):4317
+    command: ["/bin/sh"]
+    args: ["run.sh"]
