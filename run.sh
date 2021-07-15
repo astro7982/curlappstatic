@@ -1,0 +1,1 @@
+java -Dexec.executable="java" -Dotel.resource.attributes=service.name=httpGoogleChecker,deployment.environment=CheckingGoogle -Dsplunk.metrics.enabled=false -javaagent:/splunk-otel-javaagent.jar -jar /curlapp-1.1-SNAPSHOT.jar
