@@ -5,6 +5,6 @@ metadata:
 spec:
   containers:
   - name: httpgooglechecker
-    image: docker.io/astro7982/curlappstatic
+    image: docker.io/astro7982/curlappstatic:lastest
     command: ["/bin/sh"]
     args: ["run.sh"]
